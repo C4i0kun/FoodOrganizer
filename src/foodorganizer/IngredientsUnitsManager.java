@@ -11,12 +11,17 @@ public class IngredientsUnitsManager {
 	ArrayList<String> ingredientsList;
 	ArrayList<String> unitsList;
 	
-	/* Constructor */
+	/* Constructors */
 	public IngredientsUnitsManager() {
-		ingredientsList = new ArrayList<String>();
-		unitsList = new ArrayList<String>();
+		initializeLists();
 		
-		readIngredientsUnitsFile();
+		readIngredientsUnitsFile(false);
+	}
+	
+	public IngredientsUnitsManager(boolean test) {
+		initializeLists();
+		
+		readIngredientsUnitsFile(test);
 	}
 	
 	/* Getters */
@@ -34,7 +39,7 @@ public class IngredientsUnitsManager {
 		int index = 0;
 		
 		while (iterator.hasNext()) {
-			if (iterator.next() == ingredient) {
+			if (iterator.next().contentEquals(ingredient)) {
 				return index;
 			}
 			index++;
@@ -46,7 +51,7 @@ public class IngredientsUnitsManager {
 	public boolean unitIndexed(String ingredient, String unit) throws IngredientNotIndexedException {
 		int ingredientIndex = ingredientIndex(ingredient);
 		
-		if (unitsList.get(ingredientIndex) == unit) {
+		if (unitsList.get(ingredientIndex).contentEquals(unit)) {
 			return true;
 		}
 		
@@ -55,9 +60,22 @@ public class IngredientsUnitsManager {
 	}
 
 	/* Private functions */
-	private void readIngredientsUnitsFile() {
+	private void initializeLists() {
+		ingredientsList = new ArrayList<String>();
+		unitsList = new ArrayList<String>();
+	}
+	
+	private void readIngredientsUnitsFile(boolean test) {
 		try {
-			FileReader file = new FileReader("IngredientsUnits.txt");
+			
+			FileReader file;
+			
+			if (test == true) {
+				file = new FileReader("IngredientsUnitsTest.txt");
+			} else {
+				file = new FileReader("IngredientsUnits.txt");
+			}
+			
 			BufferedReader bFile = new BufferedReader(file);
 			
 			String line = bFile.readLine();
@@ -66,7 +84,7 @@ public class IngredientsUnitsManager {
 				String ingredient = identifyIngredient(line);
 				String unitType = identifyUnitType(line);
 				
-				addToIngredientsUnitsArray(ingredient, unitType);
+				this.addToIngredientsUnitsArray(ingredient, unitType);
 				
 				line = bFile.readLine();
 			}
@@ -75,11 +93,22 @@ public class IngredientsUnitsManager {
 			
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException) {
-				System.out.println("The 'IngredientsUnits.txt' does not exist!");
+				if (test == true) {
+					System.out.println("The 'IngredientsUnitsTest.txt' does not exist!");
+					System.exit(0);
+				} else {
+					System.out.println("The 'IngredientsUnits.txt' does not exist!");
+					System.exit(0);
+				}
 			} else {
-				System.out.println("Error reading 'IngredientsUnits.txt' file!");
+				if (test == true) {
+					System.out.println("Error reading 'IngredientsUnitsTest.txt' file!");
+					System.exit(0);
+				} else {
+					System.out.println("Error reading 'IngredientsUnits.txt' file!");
+					System.exit(0);
+				}
 			}
-			e.printStackTrace();
 		}
 	}
 	
@@ -93,7 +122,7 @@ public class IngredientsUnitsManager {
 		return StringManager.reduceString(lineRead, separatorIndex + 2, lineRead.length() - 1);
 	}
 	
-	private void addToIngredientsUnitsArray(String ingredient, String unit) {
+	public void addToIngredientsUnitsArray(String ingredient, String unit) {
 		try {
 			int ingredientIndex = this.ingredientIndex(ingredient);
 			
