@@ -27,18 +27,24 @@ public class Ingredient implements Comparable<Ingredient>{
 	/* Other Public Functions */
 	@Override
 	public int compareTo(Ingredient anotherIngredient) {
-		if (this.getName().compareTo(anotherIngredient.getName()) == -1) {
+		if (this.getName().compareToIgnoreCase(anotherIngredient.getName()) < 0) {
 			return -1;
-		} else if (this.getName().compareTo(anotherIngredient.getName()) == 1) {
+		} else if (this.getName().compareToIgnoreCase(anotherIngredient.getName()) > 0) {
 			return 1;
 		} else {
-			if (this.getUnitType().compareTo(anotherIngredient.getUnitType()) == -1) {
+			if (this.getUnitType().compareToIgnoreCase(anotherIngredient.getUnitType()) < 0) {
 				return -1;
-			} else if (this.getUnitType().compareTo(anotherIngredient.getUnitType()) == 1) {
+			} else if (this.getUnitType().compareToIgnoreCase(anotherIngredient.getUnitType()) > 0) {
 				return 1;
 			} else {
 				return 0;
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return "Ingredient " + name + "; amount: " + amount + " " + unitType + ".";
+		
 	}
 }
