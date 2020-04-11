@@ -8,53 +8,51 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class IngredientsUnitsManager {
-	ArrayList<ArrayList <String>> ingredientsUnits;
+	ArrayList<String> ingredientsList;
+	ArrayList<String> unitsList;
 	
 	/* Constructor */
 	public IngredientsUnitsManager() {
-		ingredientsUnits = new ArrayList<ArrayList <String>>();
+		ingredientsList = new ArrayList<String>();
+		unitsList = new ArrayList<String>();
 		
 		readIngredientsUnitsFile();
 	}
 	
 	/* Getters */
-	public ArrayList<ArrayList<String>> getIngredientsUnits() {
-		return ingredientsUnits;
+	public ArrayList<String> getIngredientsList() {
+		return ingredientsList;
 	}
-	
+
+	public ArrayList<String> getUnitsList() {
+		return unitsList;
+	}
 	
 	/* Public Functions */
-	//REMAKE THIS FUNCTION
-	public boolean ingredientIndexed(String ingredient) {
-		Iterator<ArrayList <String>> iterator = this.getIngredientsUnits().iterator();
+	public int ingredientIndex(String ingredient) throws IngredientNotIndexedException {
+		Iterator<String> iterator = this.getIngredientsList().iterator();
+		int index = 0;
 		
 		while (iterator.hasNext()) {
-			if (iterator.next().get(0) == ingredient) {
-				return true;
+			if (iterator.next() == ingredient) {
+				return index;
 			}
+			index++;
 		}
 		
-		return false;
+		throw new IngredientNotIndexedException();
 	}
 	
 	//REMAKE THIS FUNCTION
-	public boolean unitIndexed(String ingredient, String unit) {
-		Iterator<ArrayList <String>> iterator = this.getIngredientsUnits().iterator();
+	public boolean unitIndexed(String ingredient, String unit) throws IngredientNotIndexedException {
+		int ingredientIndex = ingredientIndex(ingredient);
 		
-		while (iterator.hasNext()) {
-			if (iterator.next().get(0) == ingredient) {
-				Iterator<String> unitIterator = iterator.next().iterator();
-				
-				while (unitIterator.hasNext()) {
-					if (unitIterator.next() == unit) {
-						return true;
-					}
-				}
-			}
+		if (unitsList.get(ingredientIndex) != unit) {
+			return false;
 		}
-	
 		
-		return false;
+		return true;
+		
 	}
 
 	/* Private functions */
@@ -69,7 +67,7 @@ public class IngredientsUnitsManager {
 				String ingredient = identifyIngredient(line);
 				String unitType = identifyUnitType(line);
 				
-				
+				addToIngredientsUnitsArray(ingredient, unitType);
 				
 				line = bFile.readLine();
 			}
@@ -97,11 +95,20 @@ public class IngredientsUnitsManager {
 	}
 	
 	private void addToIngredientsUnitsArray(String ingredient, String unit) {
-		
+		try {
+			int ingredientIndex = this.ingredientIndex(ingredient);
+			
+			System.out.println("Ingredient " + ingredient + "'s unit '" + unit +"' was already indexed. Ingredient index: " + ingredientIndex);
+		} catch (IngredientNotIndexedException e) {
+			this.getIngredientsList().add(ingredient);
+			this.getUnitsList().add(unit);
+			
+			System.out.println("Ingredient " + ingredient + " and unit '" + unit +"' indexed!");
+		}
 	}
 	
 }
 
 
 /* DOCUMENTATION */
-// O zero do ArrayList 
+// O zero do ArrayList interno é o ingrediente! Os outros elementos são as possíveis unidades!

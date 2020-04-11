@@ -14,27 +14,52 @@ class StringManagerTest {
 	}
 
 	@Test
-	void test1() {
+	void testreduceString1() {
 		assertEquals("bcdefg", StringManager.reduceString(stringToTest, 1, 6));
 	}
 
 	@Test
-	void test2() {
+	void testreduceString2() {
 		assertEquals("abcde", StringManager.reduceString(stringToTest, 0, 4));
 	}
 	
 	@Test
-	void test3() {
+	void testreduceString3() {
 		assertEquals("efgh", StringManager.reduceString(stringToTest, 4, 7));
 	}
 	
 	@Test
-	void test4() {
+	void testreduceString4() {
 		assertEquals("defghijk", StringManager.reduceString(stringToTest, 3, 10));
 	}
 	
 	@Test
-	void test5() {
+	void testreduceString5() {
 		assertEquals("ijk", StringManager.reduceString(stringToTest, 8, 10));
+	}
+	
+	@Test
+	void testfindIndexOfChar1() {
+		assertEquals(3, StringManager.findIndexOfChar(stringToTest, 'd'));
+	}
+	
+	@Test
+	void testfindIndexOfChar2() {
+		assertEquals(0, StringManager.findIndexOfChar(stringToTest, 'a'));
+	}
+
+	@Test
+	void testfindIndexOfChar3() {
+		assertEquals(10, StringManager.findIndexOfChar(stringToTest, 'k'));
+	}
+
+	@Test
+	void testfindIndexOfChar4() {
+		assertEquals(4, StringManager.findIndexOfChar(stringToTest, 'e'));
+	}
+
+	@Test
+	void testfindIndexOfChar5() {
+		assertEquals(6, StringManager.findIndexOfChar(stringToTest, 'g'));
 	}
 }
