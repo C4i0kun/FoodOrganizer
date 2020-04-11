@@ -13,4 +13,13 @@ public abstract class StringManager {
 		return new String(auxArray);
 	}
 	
+	public static int findIndexOfChar(String string, char charToFind) {
+		for (int i = 0; i < string.length(); i++) {
+			if (string.charAt(i) == charToFind) {
+				return(i);
+			}
+		}
+	return string.length();
+	}
+	
 }

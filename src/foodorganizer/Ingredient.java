@@ -5,6 +5,7 @@ public class Ingredient implements Comparable<Ingredient>{
 	private int amount;
 	private String unitType;
 	
+	/* Constructor */
 	public Ingredient(String name, int amount, String unitType) {
 		this.name = name;
 		this.amount = amount;
