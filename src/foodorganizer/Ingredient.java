@@ -14,18 +14,22 @@ public class Ingredient implements Comparable<Ingredient>{
 	
 	/* Getters */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public int getAmount() {
-		return amount;
+		return this.amount;
 	}
 
 	public String getUnitType() {
-		return unitType;
+		return this.unitType;
 	}
 	
-	/* Other Public Functions */
+	/* Public Functions */
+	public void addAmount(int amount) {
+		this.amount += amount;
+	}
+	
 	@Override
 	public int compareTo(Ingredient anotherIngredient) {
 		if (this.getName().compareToIgnoreCase(anotherIngredient.getName()) < 0) {
@@ -45,7 +49,7 @@ public class Ingredient implements Comparable<Ingredient>{
 	
 	@Override
 	public String toString() {
-		return "Ingredient " + name + "; amount: " + amount + " " + unitType + ".";
+		return "Ingredient " + name + " - amount: " + amount + " " + unitType;
 		
 	}
 }

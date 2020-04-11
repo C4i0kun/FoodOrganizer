@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class IngredientsUnitsManager {
-	ArrayList<String> ingredientsList;
-	ArrayList<String> unitsList;
+	private ArrayList<String> ingredientsList;
+	private ArrayList<String> unitsList;
 	
 	/* Constructors */
 	public IngredientsUnitsManager() {
