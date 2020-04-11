@@ -43,15 +43,14 @@ public class IngredientsUnitsManager {
 		throw new IngredientNotIndexedException();
 	}
 	
-	//REMAKE THIS FUNCTION
 	public boolean unitIndexed(String ingredient, String unit) throws IngredientNotIndexedException {
 		int ingredientIndex = ingredientIndex(ingredient);
 		
-		if (unitsList.get(ingredientIndex) != unit) {
-			return false;
+		if (unitsList.get(ingredientIndex) == unit) {
+			return true;
 		}
 		
-		return true;
+		return false;
 		
 	}
 
@@ -98,7 +97,11 @@ public class IngredientsUnitsManager {
 		try {
 			int ingredientIndex = this.ingredientIndex(ingredient);
 			
-			System.out.println("Ingredient " + ingredient + "'s unit '" + unit +"' was already indexed. Ingredient index: " + ingredientIndex);
+			if (this.unitIndexed(ingredient, unit) == true) {
+				System.out.println("Ingredient " + ingredient + "'s unit '" + unit +"' was already indexed. Ingredient index: " + ingredientIndex);
+			} else {
+				System.out.println("Ingredient unit type invalid!");
+			}
 		} catch (IngredientNotIndexedException e) {
 			this.getIngredientsList().add(ingredient);
 			this.getUnitsList().add(unit);
