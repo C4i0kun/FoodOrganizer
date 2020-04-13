@@ -22,4 +22,17 @@ public abstract class StringManager {
 	return string.length();
 	}
 	
+	public static boolean stringStartsWith(String bigger, String smaller) {
+		try {
+			for (int i = 0; i < smaller.length(); i++) {
+				if (bigger.charAt(i) != smaller.charAt(i)) {
+					return false;
+				}
+			}
+			
+			return true;	
+		} catch (StringIndexOutOfBoundsException e) {
+			return false;
+		}
+	}
 }

@@ -62,4 +62,20 @@ class StringManagerTest {
 	void testfindIndexOfChar5() {
 		assertEquals(6, StringManager.findIndexOfChar(stringToTest, 'g'));
 	}
+	
+	@Test
+	void testStringStartsWith1() {
+		assertEquals(true, StringManager.stringStartsWith(stringToTest, "abc"));
+	}
+	
+	@Test
+	void testStringStartsWith2() {
+		assertEquals(true, StringManager.stringStartsWith(stringToTest, "abcdef"));
+	}
+	
+	@Test
+	void testStringStartsWith3() {
+		assertEquals(false, StringManager.stringStartsWith(stringToTest, "abcdefghijklmn"));
+		/* This function tests the case which an StringIndexOutOfBoundsException happens: smaller string shouldn't be "bigger" than the "bigger" string */
+	}
 }
