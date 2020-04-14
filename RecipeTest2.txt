@@ -1,0 +1,8 @@
+TÍTULO: Hambúrguer de teste2
+INGREDIENTES:
+lentilha - 1 quilo
+farinha de aveia - 3 grama
+cebola - 7 unidade
+MODO DE PREPARO:
+1- preparo1
+2- preparo2

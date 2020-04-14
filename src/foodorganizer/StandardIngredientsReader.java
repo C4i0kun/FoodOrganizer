@@ -31,8 +31,10 @@ public abstract class StandardIngredientsReader {
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException) {
 				System.out.println("The file '" + fileName +"'does not exist!");
+				System.exit(0);
 			} else {
 				System.out.println("Error reading '" + fileName + "' file");
+				System.exit(0);
 			}
 		}
 	}

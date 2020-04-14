@@ -10,7 +10,7 @@ class RecipeTest {
 
 	@BeforeAll
 	static void preparation() {
-		recipe = new Recipe("hamburguerdelentilha.txt");
+		recipe = new Recipe("RecipeTest.txt");
 	}
 	
 	@Test
