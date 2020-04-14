@@ -13,7 +13,7 @@ class IngredientsManagerTest {
 		iM = new IngredientsManager();
 		iM.addIngredientAmount("Porco", 1, "Unidade(s)");
 		iM.addIngredientAmount("Arroz", 2, "Quilo(s)");
-		iM.addIngredientAmount("Feijao", 2, "Quilo(s)");
+		iM.addIngredientAmount("Arroz", 2, "Saco(s)");
 	}
 
 	@Test
@@ -28,7 +28,7 @@ class IngredientsManagerTest {
 	
 	@Test
 	void testIngredients2() {
-		assertEquals("Feijao", iM.getIngredients().get(2).getName());
+		assertEquals("Arroz", iM.getIngredients().get(2).getName());
 	}
 
 	@Test
@@ -58,12 +58,12 @@ class IngredientsManagerTest {
 	
 	@Test
 	void testUnits2() {
-		assertEquals("Quilo(s)", iM.getIngredients().get(2).getUnitType());
+		assertEquals("Saco(s)", iM.getIngredients().get(2).getUnitType());
 	}
 	
 	@Test
 	void testAddExistingIngredient() {
-		iM.addIngredientAmount("Feijao", 6, "Quilo(s)");
-		assertEquals(8, iM.getIngredients().get(2).getAmount());
+		iM.addIngredientAmount("Arroz", 6, "Quilo(s)");
+		assertEquals(8, iM.getIngredients().get(1).getAmount());
 	}
 }

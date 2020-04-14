@@ -1,6 +1,6 @@
 package foodorganizer;
 
-public class UnitTypeNotFoundException extends Exception {
+public class UnitTypeNotIndexedException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 }
