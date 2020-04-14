@@ -12,7 +12,8 @@ public abstract class Controller {
 		recipesManager = new RecipesManager("RecipesIndexTest.txt");
 		
 		calculateTotalIngredients();
-		ingredientsManager.printTotalIngredients();
+		System.out.println(ingredientsManager.totalIngredientsString());
+		TXTWriter.write("IngredientsLists.txt", ingredientsManager.totalIngredientsString());
 	}
 	
 	/* Getters */

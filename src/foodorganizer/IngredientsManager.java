@@ -35,14 +35,29 @@ public class IngredientsManager {
 		}
 	}
 	
-	public void printTotalIngredients() {
+	public String totalIngredientsString() {
 		this.getIngredients().sort(null);
+		String totalIngredientsString = "LISTA DE INGREDIENTES:";
 		
-		Iterator<Ingredient> ingredientsIterator = this.getIngredients().iterator();
-		
-		while (ingredientsIterator.hasNext()) {
-			System.out.println(ingredientsIterator.next());
+		for (int i = 0; i < this.getIngredients().size(); i++) {
+			Ingredient currentIngredient = this.getIngredients().get(i);
+			
+			if (currentIngredient.getAmount() == 0) {
+				continue;
+			}
+			
+			String toAdd = "";
+			if (i > 0 && currentIngredient.getName().contentEquals(this.getIngredients().get(i-1).getName())) {
+				toAdd += " e " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
+			} else {
+				toAdd += System.lineSeparator();
+				toAdd += currentIngredient.getName() + " - " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
+			}
+			
+			totalIngredientsString += toAdd;
 		}
+		
+		return totalIngredientsString;
 	}
 	
 	/* Private Functions */
