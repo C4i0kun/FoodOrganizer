@@ -95,10 +95,16 @@ public class Recipe {
 	private void autoSetIngredient(String line) {
 		int separatorIndex = StringManager.findIndexOfChar(line, '-');
 		
-		int unitTypeIndex = line.length();
-		while (line.charAt(unitTypeIndex - 1) != ' ') {
-			unitTypeIndex--;
+		int unitTypeIndex = separatorIndex;
+		int spacesRead = 0;
+		while (spacesRead < 2) {
+			if (line.charAt(unitTypeIndex) == ' ') {
+				spacesRead++;
+			}
+			unitTypeIndex++;
 		}
+		
+		//unitTypeIndex--;
 		
 		String ingredientName = StringManager.reduceString(line, 0, separatorIndex - 2);
 		int amount = Integer.parseInt(StringManager.reduceString(line, separatorIndex + 2, unitTypeIndex - 2));

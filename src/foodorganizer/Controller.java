@@ -8,8 +8,8 @@ public abstract class Controller {
 	
 	/* Controller algorithm */
 	public static void run() {
-		ingredientsManager = new IngredientsManager("StandardIngredientsTest.txt");
-		recipesManager = new RecipesManager("RecipesIndexTest.txt");
+		ingredientsManager = new IngredientsManager("StandardIngredients.txt");
+		recipesManager = new RecipesManager("RecipesIndex.txt");
 		
 		calculateTotalIngredients();
 		System.out.println(ingredientsManager.totalIngredientsString());
