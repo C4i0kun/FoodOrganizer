@@ -50,8 +50,10 @@ public class IngredientsManager {
 			if (i > 0 && currentIngredient.getName().contentEquals(this.getIngredients().get(i-1).getName())) {
 				toAdd += ", " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
 			} else {
+				if (i != 0) {
+					toAdd += System.lineSeparator();
+				}
 				toAdd += currentIngredient.getName() + " - " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
-				toAdd += System.lineSeparator();
 			}
 			
 			totalIngredientsString += toAdd;

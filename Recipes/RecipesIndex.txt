@@ -1,3 +1,8 @@
 bobodecamarao.txt
 miojoaoovo.txt
 yakisoba.txt
+frangoassado.txt
+filedepeixe.txt
+bifeacebolado.txt
+omelete.txt
+carnedepanelacombatata.txt
