@@ -6,3 +6,5 @@ filedepeixe.txt
 bifeacebolado.txt
 omelete.txt
 carnedepanelacombatata.txt
+receitaquenaoexiste.txt
+receitaempdf.pdf

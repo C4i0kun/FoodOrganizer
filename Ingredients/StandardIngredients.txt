@@ -18,3 +18,18 @@ Carne - g
 Champignon - g
 Cenoura - unidade(s)
 Acelga - folha(s)
+Sal - pitada(s)
+Ovo - unidade(s)
+Presunto - fatia(s)
+Queijo - fatia(s)
+Tempero verde - a gosto
+Caldo de galinha - a gosto
+Filé de linguado - g
+Tempero SAZON nordeste - sachê(s)
+Suco de limão - colher(es) de sopa
+Manteiga - xícara(s)
+Azeite - a gosto
+Vinagre - copo(s)
+Tempero SAZON vermelho - sachê(s)
+Miojo - pacote(s)
+Batata - unidade(s)

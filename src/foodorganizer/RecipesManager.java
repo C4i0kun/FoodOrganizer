@@ -41,14 +41,15 @@ public class RecipesManager {
 						this.getRecipes().add(new Recipe("Recipes/" + line));
 					} catch (IOException e1) {
 						if (e1 instanceof FileNotFoundException) {
-							System.out.println("The file '" + line +"'does not exist!");
+							System.out.println("The file '" + line +"' does not exist!");
+							System.out.println("Ignoring '" + line + "'...");
 						} else {
 							System.out.println("Error reading '" + line + "' file");
 						}
 					}
 						
 				} catch (FileNotTXTException e) {
-					System.out.println("Ignoring " + line);
+					System.out.println("Ignoring '" + line + "'...");
 				}
 				line = bFile.readLine();
 			}

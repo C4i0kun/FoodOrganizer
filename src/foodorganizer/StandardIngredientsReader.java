@@ -21,7 +21,7 @@ public abstract class StandardIngredientsReader {
 				String ingredient = identifyIngredient(line);
 				String unitType = identifyUnitType(line);
 				
-				ingredientsManager.addIngredientAmount(ingredient, 0, unitType);
+				ingredientsManager.addIngredientAmount(ingredient, 0, unitType, false);
 				
 				line = bFile.readLine();
 			}

@@ -11,9 +11,9 @@ class IngredientsManagerTest {
 	@BeforeEach
 	void preparation() {
 		iM = new IngredientsManager();
-		iM.addIngredientAmount("Porco", 1, "Unidade(s)");
-		iM.addIngredientAmount("Arroz", 2, "Quilo(s)");
-		iM.addIngredientAmount("Arroz", 2, "Saco(s)");
+		iM.addIngredientAmount("Porco", 1, "Unidade(s)", false);
+		iM.addIngredientAmount("Arroz", 2, "Quilo(s)", false);
+		iM.addIngredientAmount("Arroz", 2, "Saco(s)", false);
 	}
 
 	@Test
@@ -63,7 +63,7 @@ class IngredientsManagerTest {
 	
 	@Test
 	void testAddExistingIngredient() {
-		iM.addIngredientAmount("Arroz", 6, "Quilo(s)");
+		iM.addIngredientAmount("Arroz", 6, "Quilo(s)", false);
 		assertEquals(8, iM.getIngredients().get(1).getAmount());
 	}
 	

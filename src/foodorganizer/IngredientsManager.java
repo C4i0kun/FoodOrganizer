@@ -24,14 +24,17 @@ public class IngredientsManager {
 	}
 	
 	/* Public functions */
-	public void addIngredientAmount(String ingredient, int amount, String unitType) {
-		try { /* Ainda não checamos tipos diferentes, por enquanto */
+	public void addIngredientAmount(String ingredient, int amount, String unitType, boolean verbalException) {
+		try {
 			int ingredientIndex = this.ingredientIndex(ingredient, unitType);
 			Ingredient ingredientToModify = this.getIngredients().get(ingredientIndex);
 			ingredientToModify.addAmount(amount);
 		} catch (IngredientNotIndexedException e) {
 			Ingredient ingredientToAdd = new Ingredient(ingredient, amount, unitType);
 			this.getIngredients().add(ingredientToAdd);
+			if (verbalException) {
+				System.out.println("Ingredient '" + ingredient + "(" + unitType + ")' not in standard ingredients list, adding manually...");
+			}
 		}
 	}
 	

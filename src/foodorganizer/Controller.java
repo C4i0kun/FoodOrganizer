@@ -13,8 +13,6 @@ public abstract class Controller {
 		recipesManager = new RecipesManager("Recipes/RecipesIndex.txt");
 		
 		calculateTotalIngredients();
-		System.out.println("LISTE DE INGREDIENTES:");
-		System.out.println(ingredientsManager.totalIngredientsString());
 		TXTWriter.write("IngredientsLists.txt", ingredientsManager.totalIngredientsString());
 		
 		try {
@@ -45,7 +43,7 @@ public abstract class Controller {
 			
 			while (ingredientIterator.hasNext()) {
 				Ingredient currentIngredient = ingredientIterator.next();
-				getIngredientsManager().addIngredientAmount(currentIngredient.getName(), currentIngredient.getAmount(), currentIngredient.getUnitType());
+				getIngredientsManager().addIngredientAmount(currentIngredient.getName(), currentIngredient.getAmount(), currentIngredient.getUnitType(), true);
 			}
 		}
 		
