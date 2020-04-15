@@ -21,7 +21,7 @@ public class RecipesManager {
 		return recipes;
 	}
 	
-	/* Private Function */
+	/* Private Functions */
 	private void readWeeklyRecipesFile(String fileName) {
 		FileReader file;
 		try {
@@ -31,14 +31,32 @@ public class RecipesManager {
 			String line = bFile.readLine();
 			
 			while (line!= null) {
-				this.getRecipes().add(new Recipe(line));
+				
+				try {
+					if (!StringManager.reduceString(line, line.length() - 4, line.length() - 1).contentEquals(".txt")) {
+						throw new FileNotTXTException(fileName, line);
+					}
+					
+					try {
+						this.getRecipes().add(new Recipe("Recipes/" + line));
+					} catch (IOException e1) {
+						if (e1 instanceof FileNotFoundException) {
+							System.out.println("The file '" + line +"'does not exist!");
+						} else {
+							System.out.println("Error reading '" + line + "' file");
+						}
+					}
+						
+				} catch (FileNotTXTException e) {
+					System.out.println("Ignoring " + line);
+				}
 				line = bFile.readLine();
 			}
 			
 			bFile.close();
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException) {
-				System.out.println("The file '" + fileName +"'does not exist!");
+				System.out.println("The file '" + fileName +"' does not exist!");
 				System.exit(0);
 			} else {
 				System.out.println("Error reading '" + fileName + "' file");

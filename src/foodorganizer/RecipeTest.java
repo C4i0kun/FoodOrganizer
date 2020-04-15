@@ -2,6 +2,8 @@ package foodorganizer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +11,8 @@ class RecipeTest {
 	static Recipe recipe;
 
 	@BeforeAll
-	static void preparation() {
-		recipe = new Recipe("RecipeTest.txt");
+	static void preparation() throws IOException {
+		recipe = new Recipe("Recipes/RecipeTest.txt");
 	}
 	
 	@Test
@@ -71,6 +73,20 @@ class RecipeTest {
 	@Test
 	void testPreparationStep1() {
 		assertEquals("preparo2", recipe.getPreparationSteps().get(1));
+	}
+	
+	@Test
+	void testException() {
+		assertEquals(false, auxException("fjsakfhçeahmvnal.txt")); //o arquivo não existe, causando uma exceção
+	}
+	
+	private boolean auxException(String fileName) {
+		try {
+			Recipe exceptionRecipe = new Recipe(fileName);
+			return true;
+		} catch (IOException e) {
+			return false;
+		}
 	}
 
 }

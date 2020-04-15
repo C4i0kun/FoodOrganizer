@@ -12,7 +12,6 @@ class StandardIngredientsReaderTest {
 	static void preparation() {
 		iM = new IngredientsManager();
 		StandardIngredientsReader.readStandardIngredientsFile(iM, "StandardIngredientsTest.txt");
-		/* To test if the exception IOException is well handled, use a non-existent name file above, the program should end, not letting the tests happen */
 	}
 	
 	@Test
@@ -58,6 +57,13 @@ class StandardIngredientsReaderTest {
 	@Test
 	void testUnits2() {
 		assertEquals("xícara(s)", iM.getIngredients().get(2).getUnitType());
+	}
+	
+	@Test
+	void testException() {
+		IngredientsManager eM = new IngredientsManager();
+		StandardIngredientsReader.readStandardIngredientsFile(eM, "hflakhfklaçfk.txt"); //this file doesn't exist
+		assertEquals(0, eM.getIngredients().size());
 	}
 
 }

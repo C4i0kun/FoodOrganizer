@@ -11,7 +11,7 @@ public abstract class StandardIngredientsReader {
 	public static void readStandardIngredientsFile(IngredientsManager ingredientsManager, String fileName) {
 		try {
 			
-			FileReader file = new FileReader(fileName);
+			FileReader file = new FileReader("Ingredients/" + fileName);
 			
 			BufferedReader bFile = new BufferedReader(file);
 			
@@ -31,10 +31,10 @@ public abstract class StandardIngredientsReader {
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException) {
 				System.out.println("The file '" + fileName +"'does not exist!");
-				System.exit(0);
+				System.out.println("Ignoring Standard Ingredients List");
 			} else {
 				System.out.println("Error reading '" + fileName + "' file");
-				System.exit(0);
+				System.out.println("Ignoring Standard Ingredients List");
 			}
 		}
 	}

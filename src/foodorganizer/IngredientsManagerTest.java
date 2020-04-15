@@ -66,4 +66,19 @@ class IngredientsManagerTest {
 		iM.addIngredientAmount("Arroz", 6, "Quilo(s)");
 		assertEquals(8, iM.getIngredients().get(1).getAmount());
 	}
+	
+	@Test
+	void testException1() {
+		assertEquals(true, iM.testIngredientIndex("Arroz", "Quilo(s)"));
+	}
+	
+	@Test
+	void testException2() {
+		assertEquals(false, iM.testIngredientIndex("Arroz", "Quilograma(s)"));
+	}
+	
+	@Test
+	void testException3() {
+		assertEquals(false, iM.testIngredientIndex("Frango", "Quilo(s)"));
+	}
 }

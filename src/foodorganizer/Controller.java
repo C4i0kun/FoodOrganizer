@@ -10,9 +10,10 @@ public abstract class Controller {
 	/* Controller algorithm */
 	public static void run() {
 		ingredientsManager = new IngredientsManager("StandardIngredients.txt");
-		recipesManager = new RecipesManager("RecipesIndex.txt");
+		recipesManager = new RecipesManager("Recipes/RecipesIndex.txt");
 		
 		calculateTotalIngredients();
+		System.out.println("LISTE DE INGREDIENTES:");
 		System.out.println(ingredientsManager.totalIngredientsString());
 		TXTWriter.write("IngredientsLists.txt", ingredientsManager.totalIngredientsString());
 		

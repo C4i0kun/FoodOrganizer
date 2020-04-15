@@ -37,7 +37,7 @@ public class IngredientsManager {
 	
 	public String totalIngredientsString() {
 		this.getIngredients().sort(null);
-		String totalIngredientsString = "LISTA DE INGREDIENTES:";
+		String totalIngredientsString = "";
 		
 		for (int i = 0; i < this.getIngredients().size(); i++) {
 			Ingredient currentIngredient = this.getIngredients().get(i);
@@ -50,8 +50,8 @@ public class IngredientsManager {
 			if (i > 0 && currentIngredient.getName().contentEquals(this.getIngredients().get(i-1).getName())) {
 				toAdd += ", " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
 			} else {
-				toAdd += System.lineSeparator();
 				toAdd += currentIngredient.getName() + " - " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
+				toAdd += System.lineSeparator();
 			}
 			
 			totalIngredientsString += toAdd;
@@ -74,5 +74,16 @@ public class IngredientsManager {
 		}
 		
 		throw new IngredientNotIndexedException();
+	}
+	
+	/* Auxiliary test functions */
+	//this function exists to help jUnit test the exception directly
+	public boolean testIngredientIndex(String ingredient, String unitType) {
+		try {
+			ingredientIndex(ingredient, unitType);
+			return true;
+		} catch (IngredientNotIndexedException e){
+			return false;
+		}
 	}
 }

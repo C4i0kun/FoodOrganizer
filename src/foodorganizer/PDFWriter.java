@@ -14,25 +14,28 @@ import rst.pdfbox.layout.text.Alignment;
 public abstract class PDFWriter {
 	
 	public static void write(String ingredientsList, RecipesManager rManager) throws IOException {
-		Document document = new Document(40, 60, 40, 60);
-		
-		writeIngredientsList(document, ingredientsList);
-		skipLine(document, 20, 1);
-		writeRecipes(document, rManager);
-		
-		final OutputStream outputStream = new FileOutputStream("teste.pdf");
-		document.save(outputStream);
+		try {
+			Document document = new Document(40, 60, 40, 60);
+			
+			writeRecipes(document, rManager);
+			skipLine(document, 20, 1);
+			writeIngredientsList(document, ingredientsList);
+			
+			final OutputStream outputStream = new FileOutputStream("teste.pdf");
+			document.save(outputStream);
+		} catch (NullPointerException e) {
+			System.out.println("Error generating PDF.");
+		}
 	}
 	
 	/* Private Functions */
 	private static void writeIngredientsList(Document document, String ingredientsList) throws IOException {
 		/* Título */
 		Paragraph title = new Paragraph();
-		title.addText("Ingredientes Semanais Necessários", 24, PDType1Font.COURIER_BOLD);
+		title.addText("Ingredientes Necessários", 24, PDType1Font.COURIER_BOLD);
 		title.setAlignment(Alignment.Center);
 		document.add(title);
 		
-		ingredientsList = StringManager.reduceString(ingredientsList, 24, ingredientsList.length() - 1);
 		Paragraph ingredients = new Paragraph();
 		ingredients.addText(ingredientsList, 12, PDType1Font.COURIER);
 		//ingredients.setAlignment(Alignment.Center);
