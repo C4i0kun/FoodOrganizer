@@ -21,7 +21,7 @@ public abstract class PDFWriter {
 			skipLine(document, 20, 1);
 			writeIngredientsList(document, ingredientsList);
 			
-			final OutputStream outputStream = new FileOutputStream("teste.pdf");
+			final OutputStream outputStream = new FileOutputStream("ReceitasSemanais.pdf");
 			document.save(outputStream);
 		} catch (NullPointerException e) {
 			System.out.println("Error generating PDF.");
