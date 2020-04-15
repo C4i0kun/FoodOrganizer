@@ -28,14 +28,14 @@ public abstract class PDFWriter {
 	private static void writeIngredientsList(Document document, String ingredientsList) throws IOException {
 		/* Título */
 		Paragraph title = new Paragraph();
-		title.addText("Ingredientes Semanais Necessários:", 20, PDType1Font.HELVETICA_BOLD);
+		title.addText("Ingredientes Semanais Necessários", 24, PDType1Font.COURIER_BOLD);
 		title.setAlignment(Alignment.Center);
 		document.add(title);
 		
-		ingredientsList = StringManager.reduceString(ingredientsList, 23, ingredientsList.length() - 1);
+		ingredientsList = StringManager.reduceString(ingredientsList, 24, ingredientsList.length() - 1);
 		Paragraph ingredients = new Paragraph();
-		ingredients.addText(ingredientsList, 12, PDType1Font.HELVETICA);
-		ingredients.setAlignment(Alignment.Center);
+		ingredients.addText(ingredientsList, 12, PDType1Font.COURIER);
+		//ingredients.setAlignment(Alignment.Center);
 		document.add(ingredients);
 	}
 	
@@ -49,7 +49,7 @@ public abstract class PDFWriter {
 	
 	private static void writeRecipes(Document document, RecipesManager rManager) throws IOException {
 		Paragraph title = new Paragraph();
-		title.addText("Receitas da Semana", 20, PDType1Font.HELVETICA_BOLD);
+		title.addText("Receitas da Semana", 24, PDType1Font.COURIER_BOLD);
 		title.setAlignment(Alignment.Center);
 		document.add(title);
 		
@@ -59,7 +59,7 @@ public abstract class PDFWriter {
 			
 			/* Recipe Title */
 			Paragraph recipeTitle = new Paragraph();
-			recipeTitle.addText(currentRecipe.getTitle(), 18, PDType1Font.HELVETICA);
+			recipeTitle.addText(currentRecipe.getTitle(), 18, PDType1Font.COURIER_BOLD);
 			recipeTitle.setAlignment(Alignment.Center);
 			document.add(recipeTitle);
 			
@@ -67,7 +67,7 @@ public abstract class PDFWriter {
 			
 			/* Ingredients Title */
 			Paragraph ingredientsTitle = new Paragraph();
-			ingredientsTitle.addText("Ingredientes:", 16, PDType1Font.HELVETICA_OBLIQUE);
+			ingredientsTitle.addText("Ingredientes:", 16, PDType1Font.COURIER_BOLD_OBLIQUE);
 			document.add(ingredientsTitle);
 			
 			/* Ingredients Body */
@@ -77,10 +77,11 @@ public abstract class PDFWriter {
 				
 				Paragraph ingredients = new Paragraph();
 				
+				
 				if (currentIngredient.getUnitType().contentEquals("a gosto")) {
-					ingredients.addText(currentIngredient.getName() + " - " + currentIngredient.getUnitType(), 12, PDType1Font.HELVETICA);
+					ingredients.addText("-> " + currentIngredient.getName() + " - " + currentIngredient.getUnitType(), 12, PDType1Font.COURIER);
 				} else {
-					ingredients.addText(currentIngredient.getName() + " - " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType(), 12, PDType1Font.HELVETICA);
+					ingredients.addText("-> " + currentIngredient.getName() + " - " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType(), 12, PDType1Font.COURIER);
 				}
 				document.add(ingredients);
 			}
@@ -89,17 +90,19 @@ public abstract class PDFWriter {
 			
 			/* Preparation Steps Title */
 			Paragraph preparationStepsTitle = new Paragraph();
-			preparationStepsTitle.addText("Modo de Preparo:", 16, PDType1Font.HELVETICA_OBLIQUE);
+			preparationStepsTitle.addText("Modo de Preparo:", 16, PDType1Font.COURIER_BOLD_OBLIQUE);
 			document.add(preparationStepsTitle);
 			
 			/* Preparation Steps Body */
 			Iterator<String> preparationIterator = currentRecipe.getPreparationSteps().iterator();
+			int iteratorIndex = 1;
 			while (preparationIterator.hasNext()) {
 				String currentPrepatationStep = preparationIterator.next();
 				
 				Paragraph ingredients = new Paragraph();
-				ingredients.addText(currentPrepatationStep, 12, PDType1Font.HELVETICA);
+				ingredients.addText(iteratorIndex + ". " + currentPrepatationStep, 12, PDType1Font.COURIER);
 				document.add(ingredients);
+				iteratorIndex++;
 			}
 			
 			skipLine(document, 12, 1);

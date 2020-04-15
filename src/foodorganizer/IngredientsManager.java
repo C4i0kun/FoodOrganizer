@@ -48,7 +48,7 @@ public class IngredientsManager {
 			
 			String toAdd = "";
 			if (i > 0 && currentIngredient.getName().contentEquals(this.getIngredients().get(i-1).getName())) {
-				toAdd += " e " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
+				toAdd += ", " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
 			} else {
 				toAdd += System.lineSeparator();
 				toAdd += currentIngredient.getName() + " - " + currentIngredient.getAmount() + " " + currentIngredient.getUnitType();
