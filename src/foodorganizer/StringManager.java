@@ -35,4 +35,27 @@ public abstract class StringManager {
 			return false;
 		}
 	}
+	
+	public static int findIndexOfString(String string, String stringToFind) {
+		int equalChars = 0;
+		
+		for (int i = 0; i < string.length(); i++) {
+			for (int j = 0; j < stringToFind.length(); j ++) {
+				try {
+					if (string.charAt(i + j) == string.charAt(j)) {
+						equalChars++;
+					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+					break;
+				}
+			}
+			
+			if (equalChars == stringToFind.length()) {
+				return i;
+			}
+			
+		}
+		
+		return string.length();
+	}
 }

@@ -1,5 +1,6 @@
 package foodorganizer;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 public abstract class Controller {
@@ -14,6 +15,13 @@ public abstract class Controller {
 		calculateTotalIngredients();
 		System.out.println(ingredientsManager.totalIngredientsString());
 		TXTWriter.write("IngredientsLists.txt", ingredientsManager.totalIngredientsString());
+		
+		try {
+			PDFWriter.write(ingredientsManager.totalIngredientsString(), recipesManager);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/* Getters */

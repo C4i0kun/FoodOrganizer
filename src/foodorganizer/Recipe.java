@@ -29,15 +29,15 @@ public class Recipe {
 
 	/* Getters */
 	public ArrayList<Ingredient> getIngredients() {
-		return ingredients;
+		return this.ingredients;
 	}
 
 	public ArrayList<String> getPreparationSteps() {
-		return preparationSteps;
+		return this.preparationSteps;
 	}
 	
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	/* Setters */
@@ -103,8 +103,6 @@ public class Recipe {
 			}
 			unitTypeIndex++;
 		}
-		
-		//unitTypeIndex--;
 		
 		String ingredientName = StringManager.reduceString(line, 0, separatorIndex - 2);
 		int amount = Integer.parseInt(StringManager.reduceString(line, separatorIndex + 2, unitTypeIndex - 2));

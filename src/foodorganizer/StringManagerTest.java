@@ -78,4 +78,5 @@ class StringManagerTest {
 		assertEquals(false, StringManager.stringStartsWith(stringToTest, "abcdefghijklmn"));
 		/* This function tests the case which an StringIndexOutOfBoundsException happens: smaller string shouldn't be "bigger" than the "bigger" string */
 	}
+
 }
