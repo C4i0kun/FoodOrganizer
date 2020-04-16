@@ -1,5 +1,6 @@
 package foodorganizer;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,19 +14,35 @@ import rst.pdfbox.layout.text.Alignment;
 
 public abstract class PDFWriter {
 	
-	public static void write(String ingredientsList, RecipesManager rManager) throws IOException {
+	public static void write(String ingredientsList, RecipesManager rManager) {
+		Document document = new Document(40, 60, 40, 60);
+		
 		try {
-			Document document = new Document(40, 60, 40, 60);
-			
 			writeRecipes(document, rManager);
-			skipLine(document, 20, 1);
-			writeIngredientsList(document, ingredientsList);
-			
-			final OutputStream outputStream = new FileOutputStream("ReceitasSemanais.pdf");
-			document.save(outputStream);
-		} catch (NullPointerException e) {
-			System.out.println("Error generating PDF.");
+		} catch (IOException e){
+			System.out.println("Error writing Recipes on PDF file! Aborting...");
 		}
+		
+		try {
+			skipLine(document, 20, 1);
+		} catch (IOException e) {
+			System.out.println("Error skipping lines on PDF file! Aborting...");
+		}
+		
+		try {
+			writeIngredientsList(document, ingredientsList);
+		} catch (IOException e) {
+			System.out.println("Error writing ingredients list on PDF File! Aborting...");
+		}
+		
+		OutputStream outputStream;
+		try {
+			outputStream = new FileOutputStream("ReceitasSemanais.pdf");
+			document.save(outputStream);
+		} catch (IOException e) {
+			System.out.println("Error saving PDF file! Aborting...");
+		}
+		
 	}
 	
 	/* Private Functions */
