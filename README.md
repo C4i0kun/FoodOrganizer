@@ -48,6 +48,7 @@ As outras exceções referem-se a questões como **IOException** ou **FileNotFou
 ## Recomendações de execução
 * Caso queira adicionar uma receita, utilize o modelo padrão proposto pelas receitas já existentes. Usar uma organização diferente criaria diversas exceções complicadas de serem resolvidas e não houve tempo hábil para tal. Portanto, siga os exemplos dados.
 * Lembre-se novamente de fazer os procedimentos citados no início desse README antes de utiizar os testes jUnit nesse projeto.
+* **Execute o projeto com UTF-8, ou a leitura dos arquivos falhará!**
 
 ## EXTRA: Mesmo ingrediente com várias unidades diferentes
 É possível notar que, na lista de ingredientes final, alguns ingredientes possuem mais de uma unidade de contagem. Como por exemplo: ```Manteiga - 1 a gosto, 1 colher(es), 1 xícara(s)```. Mas como isso é feito no código?  
